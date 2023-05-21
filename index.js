@@ -29,39 +29,39 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
      client.connect();
-     
+
 
     const dollCollection = client.db('dollCollection').collection('doll');
 
 
     app.get('/', async(req, res) =>{
       res.send("toy island server is running");
-    })
+    });
 
     app.get('/allToy', async(req, res) =>{
       const result = await dollCollection.find().toArray();
       res.send(result);
-    })
+    });
 
     app.get('/allToy/:id', async(req, res) =>{
       const id = req.params.id;
       const query = {_id: new ObjectId(id)};
       const result= await dollCollection.findOne(query);
       res.send(result);
-    })
+    });
 
     app.get('/toyByCategory', async(req, res) =>{
       const subCategory = req.query?.subCategory;
       const query = {category: subCategory}
       const result = await dollCollection.find(query).toArray();
       res.send(result);
-    })
+    });
 
     app.post('/addToy', async(req, res) =>{
       const body = req.body;
       const result = await dollCollection.insertOne(body);
       res.send(result);
-    })
+    });
 
 
     
