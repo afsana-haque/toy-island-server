@@ -52,7 +52,7 @@ async function run() {
 
     app.get('/toyByCategory', async(req, res) =>{
       const subCategory = req.query?.subCategory;
-      const query = {category: subCategory}
+      const query = {category: subCategory};
       const result = await dollCollection.find(query).toArray();
       res.send(result);
     });
@@ -77,5 +77,5 @@ run().catch(console.dir);
 
 
 app.listen(port, () => {
-  console.log(`Toy island server is running on ${port}`)
-})
+  console.log(`Toy island server is running on ${port}`);
+});
